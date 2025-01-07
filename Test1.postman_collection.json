@@ -1,0 +1,237 @@
+{
+	"info": {
+		"_postman_id": "9c9ce9c0-480b-4b48-b042-6f600bdbb36c",
+		"name": "Test1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "895526"
+	},
+	"item": [
+		{
+			"name": "Session8",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "https://reqres.in/api/users",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"{{$randomFirstName}}\",\r\n    \"job\": \"{{$randomJobType}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "https://reqres.in/api/users",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"{{$randomFirstName}}\",\r\n    \"job\": \"{{$randomJobType}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://reqres.in/api/users",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 02 Jan 2025 09:38:09 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "89"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"group\":\"heroku-nel\",\"max_age\":3600,\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?ts=1735810689&sid=c4c9725f-1ab0-44d8-820f-430df2718e11&s=5Ofh4tdrtTSo1BYtWZTcjzKtLQtWIw2ltArkCMP8L%2BY%3D\"}]}"
+						},
+						{
+							"key": "Reporting-Endpoints",
+							"value": "heroku-nel=https://nel.heroku.com/reports?ts=1735810689&sid=c4c9725f-1ab0-44d8-820f-430df2718e11&s=5Ofh4tdrtTSo1BYtWZTcjzKtLQtWIw2ltArkCMP8L%2BY%3D"
+						},
+						{
+							"key": "Nel",
+							"value": "{\"report_to\":\"heroku-nel\",\"max_age\":3600,\"success_fraction\":0.005,\"failure_fraction\":0.05,\"response_headers\":[\"Via\"]}"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"59-xko6wLDwm9WSXO0GpLXxgv38L8Y\""
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						},
+						{
+							"key": "CF-Cache-Status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "8fb9c647ce660847-IAD"
+						},
+						{
+							"key": "server-timing",
+							"value": "cfL4;desc=\"?proto=TCP&rtt=2925&min_rtt=2791&rtt_var=897&sent=4&recv=6&lost=0&retrans=0&sent_bytes=2819&recv_bytes=811&delivery_rate=1028774&cwnd=236&unsent_bytes=0&cid=8fbe662eefb570c2&ts=182&x=0\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"name\": \"Lennie\",\n    \"job\": \"Administrator\",\n    \"id\": \"200\",\n    \"createdAt\": \"2025-01-02T09:38:09.381Z\"\n}"
+				}
+			]
+		},
+		{
+			"name": "checkpoints",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check response size\", function () {\r",
+							"    // Get the response body as a string\r",
+							"    var responseBody = pm.response.text();\r",
+							"    \r",
+							"    // Calculate the size in bytes\r",
+							"    var responseSize = Buffer.byteLength(responseBody, 'utf8');\r",
+							"\r",
+							"    // Log the size to the console\r",
+							"    console.log(\"Response Size in Bytes:\", responseSize);\r",
+							"    \r",
+							"    // Set your expected size limit (e.g., 1000 bytes)\r",
+							"    var expectedSizeLimit = 1000;\r",
+							"\r",
+							"    // Check if the response size is within the expected limit\r",
+							"    pm.expect(responseSize).to.be.below(expectedSizeLimit);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check if response status is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check if expected value is present\", function () {\r",
+							"    // Parse the response body\r",
+							"    var jsonData = pm.response.json();\r",
+							"    \r",
+							"    // Check if the value exists in the specified key\r",
+							"    pm.expect(jsonData.total).to.eql(12);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check if expectedString is present in the response\", function () {\r",
+							"    // Get the response body as a string\r",
+							"    var responseBody = pm.response.text();\r",
+							"    \r",
+							"    // Check if the expected string is present\r",
+							"    pm.expect(responseBody).to.include(\"page\");\r",
+							"});\r",
+							"pm.test(\"Check if area of floor 2 is 1600\", function () {\r",
+							"    // Parse the response body\r",
+							"    var jsonData = pm.response.json();\r",
+							"    \r",
+							"    // Access the floor details\r",
+							"    var floor2Area = jsonData.data[1].first_name; // Index 1 for the second floor\r",
+							" console.log(\"First name is\", floor2Area);\r",
+							"    // Check if the area is as expected\r",
+							"    pm.expect(floor2Area).to.eql(\"Janet\");\r",
+							"});\r",
+							"pm.test(\"Check Content-Type\", function () {\r",
+							"    var contentType = pm.response.headers.get(\"Content-Type\");\r",
+							"    pm.expect(contentType).to.exist; // Ensure Content-Type header exists\r",
+							"\r",
+							"    // You can check for a specific content type, e.g., application/json\r",
+							"    pm.expect(contentType).to.include(\"application/json\"); // Adjust as needed\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 1000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/users",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
